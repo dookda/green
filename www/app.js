@@ -4,8 +4,8 @@ $(document).ready(() => {
 })
 
 const map = L.map('map', {
-    center: [18.788590, 98.985483],
-    zoom: 16
+    center: [13.448474, 101.181245],
+    zoom: 14
 });
 
 // var drawnItems = L.featureGroup();
@@ -17,29 +17,111 @@ function loadMap() {
         tileSize: 512,
         zoomOffset: -1
     });
+
+    const grod = L.tileLayer('https://{s}.google.com/vt/lyrs=r&x={x}&y={y}&z={z}', {
+        maxZoom: 20,
+        subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+        lyr: 'basemap'
+    });
+
+    const ghyb = L.tileLayer('https://{s}.google.com/vt/lyrs=y,m&x={x}&y={y}&z={z}', {
+        maxZoom: 20,
+        subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+        lyr: 'basemap'
+    });
+
+    const aa = 'http://tile.openweathermap.org/map/temp_new/3/3/1.png?appid=d22d9a6a3ff2aa523d5917bbccc89211'
+    const bb = 'http://maps.openweathermap.org/maps/2.0/weather/WND/{z}/{x}/{y}?date=1592303284363&use_norm=true&arrow_step=16&appid=c1492da641a49167c53363a5e22ab7ef'
+    const cc = 'http://maps.openweathermap.org/maps/2.0/weather/PA0/{z}/{x}/{y}?date=1592303284363&appid=c1492da641a49167c53363a5e22ab7ef'
+    const dd = 'http://maps.openweathermap.org/maps/2.0/weather/TA2/{z}/{x}/{y}?date=1592303284363&opacity=0.9&fill_bound=true&palette=0:FF0000;10:00FF00;20:0000FF&appid=c1492da641a49167c53363a5e22ab7ef'
+
+    const OWM_API_KEY = 'c1492da641a49167c53363a5e22ab7ef';
+
+    var clouds = L.OWM.clouds({ opacity: 0.8, legendImagePath: 'files/NT2.png', appId: OWM_API_KEY });
+    var cloudscls = L.OWM.cloudsClassic({ opacity: 0.5, appId: OWM_API_KEY });
+    var precipitation = L.OWM.precipitation({ opacity: 0.5, appId: OWM_API_KEY });
+    var precipitationcls = L.OWM.precipitationClassic({ opacity: 0.5, appId: OWM_API_KEY });
+    var rain = L.OWM.rain({ opacity: 0.5, appId: OWM_API_KEY });
+    var raincls = L.OWM.rainClassic({ opacity: 0.5, appId: OWM_API_KEY });
+    var snow = L.OWM.snow({ opacity: 0.5, appId: OWM_API_KEY });
+    var pressure = L.OWM.pressure({ opacity: 0.4, appId: OWM_API_KEY });
+    var pressurecntr = L.OWM.pressureContour({ opacity: 0.5, appId: OWM_API_KEY });
+    var temp = L.OWM.temperature({ opacity: 0.5, appId: OWM_API_KEY });
+    var wind = L.OWM.wind({ opacity: 0.5, appId: OWM_API_KEY });
+
+
+
+    // const temp = L.tileLayer(cc);
+
     const pro = L.tileLayer.wms("http://cgi.uru.ac.th/geoserver/wms?", {
         layers: 'th:province_4326',
         format: 'image/png',
         transparent: true,
         attribution: "#grid"
     });
+
+    const pk_bu_4326 = L.tileLayer.wms("http://119.59.125.134:8080/geoserver/wms?", {
+        layers: 'green:pk_bu_4326',
+        format: 'image/png',
+        transparent: true
+    });
+
+    const pk_green_4326 = L.tileLayer.wms("http://119.59.125.134:8080/geoserver/wms?", {
+        layers: 'green:pk_green_4326',
+        format: 'image/png',
+        transparent: true
+    });
+
+    const pk_os_4326 = L.tileLayer.wms("http://119.59.125.134:8080/geoserver/wms?", {
+        layers: 'green:pk_os_4326',
+        format: 'image/png',
+        transparent: true
+    });
+
+    const pk_streams_4326 = L.tileLayer.wms("http://119.59.125.134:8080/geoserver/wms?", {
+        layers: 'green:pk_streams_4326',
+        format: 'image/png',
+        transparent: true
+    });
+
+    const pk_trans_4326 = L.tileLayer.wms("http://119.59.125.134:8080/geoserver/wms?", {
+        layers: 'green:pk_trans_4326',
+        format: 'image/png',
+        transparent: true
+    });
+
     const baseMap = {
-        "OSM": osm.addTo(map)
+        "OSM": osm.addTo(map),
+        "แผนที่ถนน (google)": grod,
+        "แผนที่ภาพถ่าย (google)": ghyb
     }
+
     const overlayMap = {
-        "ขอบจังหวัด": pro.addTo(map)
+        "ขอบจังหวัด": pro.addTo(map),
+        "temp": temp,
+        "สิ่งปลูกสร้าง": pk_bu_4326.addTo(map),
+        "พื้นที่สีเขียว": pk_green_4326.addTo(map),
+        "พื้นที่เปิดโล่ง": pk_os_4326.addTo(map),
+        "แม่น้ำ": pk_streams_4326.addTo(map),
+        "ถนน": pk_trans_4326.addTo(map),
     }
+
     L.control.layers(baseMap, overlayMap).addTo(map);
 
     getWeather(map.getCenter());
     draw();
 
-    map.on('dragend', e => {
-        getWeather(map.getCenter());
+    // map.on('dragend', e => {
+    //     getWeather(map.getCenter());
+    // })
+
+    map.on('click', e => {
+        getWeather(e.latlng);
     })
 }
 
 function getWeather(c) {
+    console.log(c.lat)
     let url = `http://api.openweathermap.org/data/2.5/weather?lat=${c.lat}&lon=${c.lng}&units=metric&appid=347fb1dc79fee191dce2f5ef8d198c9d`
     $.get(url).done(res => {
         // console.log(res)

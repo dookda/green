@@ -60,6 +60,14 @@ function loadMap() {
         attribution: "#grid"
     });
 
+
+    const parcel = L.tileLayer.wms("http://119.59.125.134:8080/geoserver/wms?", {
+        layers: 'green:parcel',
+        format: 'image/png',
+        transparent: true,
+        maxZoom: 20
+    });
+
     const pk_bu_4326 = L.tileLayer.wms("http://119.59.125.134:8080/geoserver/wms?", {
         layers: 'green:pk_bu_4326',
         format: 'image/png',
@@ -90,6 +98,14 @@ function loadMap() {
         transparent: true
     });
 
+
+    const pk_vill = L.tileLayer.wms("http://119.59.125.134:8080/geoserver/wms?", {
+        layers: 'green:pk_vill',
+        format: 'image/png',
+        transparent: true,
+        maxZoom: 20
+    });
+
     const baseMap = {
         "OSM": osm.addTo(map),
         "แผนที่ถนน (google)": grod,
@@ -97,13 +113,14 @@ function loadMap() {
     }
 
     const overlayMap = {
-        "ขอบจังหวัด": pro.addTo(map),
         "temp": temp,
         "สิ่งปลูกสร้าง": pk_bu_4326.addTo(map),
         "พื้นที่สีเขียว": pk_green_4326.addTo(map),
         "พื้นที่เปิดโล่ง": pk_os_4326.addTo(map),
         "แม่น้ำ": pk_streams_4326.addTo(map),
         "ถนน": pk_trans_4326.addTo(map),
+        "แปลงที่ดิน": parcel.addTo(map),
+        "ชุมชน": pk_vill
     }
 
     L.control.layers(baseMap, overlayMap).addTo(map);

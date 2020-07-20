@@ -44,7 +44,7 @@
                     <a class="nav-link " href="index.html">หน้าหลัก</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="fieldsurvey.html">เก็บข้อมูล</a>
+                    <a class="nav-link active" href="pin.html">เก็บข้อมูล</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">เกี่ยวกับโครงการ</a>
@@ -64,13 +64,18 @@
             <input type="hidden" id="lat">
             <input type="hidden" id="lng">
 
-            <div class="col-sm-12 mt-1">
+            <div class="col-sm-12 mt-3">
                 <form>
-                    <!-- <div class="form-group">สถานที่</label>
-                        <input type="text" class="form-control" id="sname" required>
-                    </div> -->
+                    <div class="form-group">ประเภทพื้นที่สีเขียวในฐานข้อมูล:</label>
+                        <div class="row">
+                            <div class="col-3">
+                                <input type="text" class="form-control" id="subcode_1" disabled></div>
+                            <div class="col-9">
+                                <input type="text" class="form-control" id="greendata" disabled></div>
+                        </div>
+                    </div>
                     <div class="form-group">
-                        <label for="type">ประเภท:</label>
+                        <label for="type">ประเภทที่สำรวจพบ:</label>
                         <select class="form-control" id="stype" required>
                             <option value="1.1สวนสาธารณะ" selected>1.1สวนสาธารณะ</option>
                             <option value="1.2สนามกีฬา">1.2สนามกีฬา</option>
@@ -94,30 +99,33 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="desc">เพิ่มเติม</label>
-                        <input type="text" class="form-control" id="sdesc" required>
+                        <label for="desc">รายละเอียดเพิ่มเติม:</label>
+                        <input type="text" class="form-control" id="sdesc">
                     </div>
                     <label for="img">รูปภาพ</label>
                     <div class="form-group">
                         <input type="file" accept="image/*" name="imgfile" id="imgfile">
+                        <p></p>
                         <img src="" id="preview" height="70px">
                     </div>
                     <hr>
                     <!-- <button type="button" id="refresh" onclick="refreshPage()"
                         class="btn btn-outline-info">refresh</button>&nbsp; | -->
 
-                    <div class="row">
-                        <div class="col-4">
-                            <button type="button" id="save" class="btn btn-success btn-block"
-                                onclick="insertData()">send</button>
-                        </div>
-                        <div class="col-4">
-                            <button type="button" id="edit" class="btn btn-info btn-block"
-                                onclick="editData()">edit</button>
-                        </div>
-                        <div class="col-4">
-                            <button type="button" id="remove" class="btn btn-danger btn-block"
-                                onclick="deleteData()">delete</button>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="row">
+                            <div class="col-4" id="save">
+                                <button type="button" class="btn btn-success btn-block"
+                                    onclick="insertData()">save</button>
+                            </div>
+                            <div class="col-4" id="edit">
+                                <button type="button" class="btn btn-success btn-block"
+                                    onclick="editData()">save</button>
+                            </div>
+                            <div class="col-4" id="remove">
+                                <button type="button" class="btn btn-danger btn-block"
+                                    onclick="deleteData()">delete</button>
+                            </div>
                         </div>
 
                     </div>
@@ -135,7 +143,7 @@
     </main>
 
 
-    <footer class="footer pt-5 pb-5 text-center">
+    <footer class="footer  text-center">
 
         <div class="container">
 

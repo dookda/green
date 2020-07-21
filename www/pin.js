@@ -22,7 +22,8 @@ const lc = L.control.locate({
   }
 });
 lc.addTo(map)
-// lc.start();
+lc.start();
+// map.on("locationfound");
 
 map.on("click", (e) => {
   // console.log("wddwwd");

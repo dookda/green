@@ -22,8 +22,8 @@ const lc = L.control.locate({
   }
 });
 lc.addTo(map)
-lc.start();
-// map.on("locationfound");
+// lc.start();
+map.on("locationfound", onLocationFound);
 
 map.on("click", (e) => {
   // console.log("wddwwd");
@@ -43,12 +43,17 @@ map.on("click", (e) => {
 
 // const url = 'http://localhost:3000';
 const url = "https://rti2dss.com:3400";
+const geoserv = "https://rti2dss.com:8443/geoserver/wms?";
 
 $("#edit").hide();
 $("#remove").hide();
 
 var pos;
 var pkid;
+
+function onLocationFound(e) {
+  console.log(e)
+}
 
 function loadMap() {
   const osm = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
@@ -70,56 +75,56 @@ function loadMap() {
     lyr: 'basemap'
   });
 
-  const pro = L.tileLayer.wms("http://119.59.125.134:8080/geoserver/wms?", {
+  const pro = L.tileLayer.wms(geoserv, {
     layers: 'th:province_4326',
     format: 'image/png',
     transparent: true,
     attribution: "#grid"
   });
 
-  const parcel = L.tileLayer.wms("http://119.59.125.134:8080/geoserver/wms?", {
+  const parcel = L.tileLayer.wms(geoserv, {
     layers: 'green:parcel',
     format: 'image/png',
     transparent: true,
     maxZoom: 20
   });
 
-  const pk_bu_4326 = L.tileLayer.wms("http://119.59.125.134:8080/geoserver/wms?", {
+  const pk_bu_4326 = L.tileLayer.wms(geoserv, {
     layers: 'green:pk_bu_4326',
     format: 'image/png',
     transparent: true,
     maxZoom: 20
   });
 
-  const pk_green_4326 = L.tileLayer.wms("http://119.59.125.134:8080/geoserver/wms?", {
+  const pk_green_4326 = L.tileLayer.wms(geoserv, {
     layers: 'green:pk_green_4326',
     format: 'image/png',
     transparent: true,
     maxZoom: 20
   });
 
-  const pk_os_4326 = L.tileLayer.wms("http://119.59.125.134:8080/geoserver/wms?", {
+  const pk_os_4326 = L.tileLayer.wms(geoserv, {
     layers: 'green:pk_os_4326',
     format: 'image/png',
     transparent: true,
     maxZoom: 20
   });
 
-  const pk_streams_4326 = L.tileLayer.wms("http://119.59.125.134:8080/geoserver/wms?", {
+  const pk_streams_4326 = L.tileLayer.wms(geoserv, {
     layers: 'green:pk_streams_4326',
     format: 'image/png',
     transparent: true,
     maxZoom: 20
   });
 
-  const pk_trans_4326 = L.tileLayer.wms("http://119.59.125.134:8080/geoserver/wms?", {
+  const pk_trans_4326 = L.tileLayer.wms(geoserv, {
     layers: 'green:pk_trans_4326',
     format: 'image/png',
     transparent: true,
     maxZoom: 20
   });
 
-  const pk_vill = L.tileLayer.wms("http://119.59.125.134:8080/geoserver/wms?", {
+  const pk_vill = L.tileLayer.wms(geoserv, {
     layers: 'green:pk_vill',
     format: 'image/png',
     transparent: true,

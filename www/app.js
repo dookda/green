@@ -75,8 +75,13 @@ function loadMap() {
         transparent: true
     });
 
+<<<<<<< HEAD
+    const pk_green_4326 = L.tileLayer.wms("http://119.59.125.134:8080/geoserver/wms?", {
+        layers: 'green:pk_green_13aug20_32647',
+=======
     const pk_green_4326 = L.tileLayer.wms(geoserv, {
         layers: 'green:pk_green_4326',
+>>>>>>> aba3370a468eaca4aaf8e4cbfe1a3f02deda8e92
         format: 'image/png',
         transparent: true
     });

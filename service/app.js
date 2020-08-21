@@ -4,7 +4,6 @@ const con = require("./db");
 const cv = con.cv;
 
 
-
 app.post("/api/pin-insert", (req, res) => {
     const { stype, sdesc, img, geom } = req.body;
     const pkid = "img" + Date.now();

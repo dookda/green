@@ -101,7 +101,7 @@ app.get("/api/getgreen/:lat/:lon", (req, res) => {
     const lat = req.params.lat;
     const lon = req.params.lon;
     const buff = 10;
-    const sql = `SELECT name, descriptio, subcode_1 FROM pk_green_4326 
+    const sql = `SELECT pk_gcname as name, pk_gcsname as descriptio, pk_gcscode as subcode_1 FROM pk_green_31aug20 
       WHERE ST_DWithin(ST_Transform(geom,3857), 
       ST_Transform(ST_GeomFromText('POINT(${lon} ${lat})',4326), 3857), ${buff}) = 'true'`;
     cv.query(sql).then(data => {
@@ -112,6 +112,30 @@ app.get("/api/getgreen/:lat/:lon", (req, res) => {
         });
     });
 });
+
+app.get("/api/getgreenbycom", (req, res) => {
+    const sql = `SELECT * FROM pivot_green_31aug2020`;
+
+    cv.query(sql).then(data => {
+        res.status(200).json({
+            status: "success",
+            data: data.rows
+        });
+    });
+})
+
+app.get("/api/getgreenarea", (req, res) => {
+    const sql = `SELECT pk_gcname, sum(pk_g_rai) FROM pk_green_31aug20
+    group by pk_gcname order by pk_gcname`;
+
+    cv.query(sql).then(data => {
+        res.status(200).json({
+            status: "success",
+            data: data.rows
+        });
+    });
+})
+
 
 
 module.exports = app;

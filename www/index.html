@@ -8,16 +8,10 @@
     <title>green area</title>
     <script
         type="text/javascript"> (function () { var css = document.createElement('link'); css.href = 'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
-        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-        crossorigin="" />
-    <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet.pm@latest/dist/leaflet.pm.css" /> -->
-    <link rel="stylesheet" href="https://unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Prompt:wght@300&display=swap">
     <link rel="stylesheet" href="assets/css/app.css">
     <link rel="stylesheet" href="assets/css/theme.css">
-    <link rel="stylesheet" href="leaflet-openweathermap.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./about.css">
 
 </head>
 
@@ -31,127 +25,80 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarsDefault">
             <ul class="navbar-nav mr-auto align-items-center">
-                <form class="bd-search hidden-sm-down">
-                    <input type="text" class="form-control bg-graylight border-0 font-weight-bold" id="search-input"
-                        placeholder="Search..." autocomplete="off">
-                    <div class="dropdown-menu bd-search-results" id="search-results">
-                    </div>
-                </form>
+
             </ul>
             <ul class="navbar-nav ml-auto align-items-center">
                 <li class="nav-item">
-                    <a class="nav-link active" href="index.html">หน้าหลัก</a>
+                    <a class="nav-link active" href="index.html">เกี่ยวกับโครงการ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="tempcal.html">พื้นที่สีเขียว</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="pin.html">เก็บข้อมูล</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="dashboard.html">dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">เกี่ยวกับโครงการ</a>
+                    <a class="nav-link" href="dashboard.html">สถิติ</a>
                 </li>
 
             </ul>
         </div>
     </nav>
+
     <main role="main">
         <section class="mt-4 mb-5">
             <div class="container-fluid">
-                <div class="col-12 title">อุณหภูมิขณะนี้ <span id="temp"></span> | <span id="temp_max"></span> |
-                    <span id="temp_min"></span>
-                </div>
                 <div class="row">
-                    <!-- <div class="card-columns"> -->
-                    <div class="col-sm-8 mt-1">
-                        <div class="card round shadow-sm" id="map"></div>
-                    </div>
-                    <div class="col-sm-4 mt-1">
-                        <div class="card">
-                            <span class="font-weight-bold f-18">คำนวณการลดลงของอุณหภูมิพื้นผิวจากพื้นที่สีเขียว</span>
-                            <div>
-                                <label for="usr">ค่าสัมประสิทธิ์สำหรับคำนวณการลดลงของอุณหภูมิ (ทดสอบ):</label>
-                                <input type="number" class="form-control bg-graylight border-0 font-weight-bold"
-                                    id="coef" step="0.0001">
-                            </div>
-                        </div>
+                    <div class="col-sm-12 mb-1">
+                        <div id="greenByCom">
 
-                        <div class="card mt-2">
-                            <span class="" id="count">เพิ่มพื้นที่สีเขียวโดยการวาดลงบนแผนที่</span>
-                            <span class="f-green" id="tmpDown"></span>
-                        </div>
-                        <div class="card mt-3" id="report">
-                            <ul class="list-group " id="inner"></ul>
+                            <div class="bg-img"></div>
+                            <div class="bg-text">
+                                <img src="./assets/img/enlogo.png" width="150px">
+                                <h3>โครงการผลักดันการจัดทำผังชุมชนเพื่อรักษาพื้นที่สีเขียวในเมือง</h3>
+                                <hr>
+                                <p>จากการขยายตัวของพื้นที่เมืองโดยเฉพาะด้านการคมนาคมขนส่งและการสร้างที่อยู่อาศัย
+                                    ทำให้ชุมชนและเมืองในประเทศไทยสูญเสียพื้นที่สีเขียวจำนวนมาก
+                                    เกิดการขาดแหล่งบรรเทาความร้อน
+                                    ขาดแหล่งดูดซับมลพิษทางอากาศ ส่งผลกระทบต่อสุขภาพของประชาชน
+                                    การเพิ่มพื้นที่สีเขียวมีศักยภาพสูงสามารถสร้างความสมดุลของระบบนิเวศเมือง
+                                    บรรเทาผลกระทบจากการเปลี่ยนแปลงสภาพภูมิอากาศ อนุรักษ์ความหลากหลายทางชีวภาพ
+                                    เป็นแหล่งเพาะปลูกพืชเพื่อเป็นอาหาร สร้างเสริมสุขภาพทั้งร่างกายและจิตใจ
+                                    ป้องกันภัยพิบัติ
+                                    รวมทั้งให้ชุมชนและเมืองมีมาตรฐานเทียบเท่าชุมชนและเมืองในระดับสากลและดึงดูดความสนใจของนักท่องเที่ยวผู้มาเยือน
+                                    ดังนั้น สำนักงานนโยบายและแผนทรัพยากรธรรมชาติและสิ่งแวดล้อม
+                                    จึงเห็นความจำเป็นดังกล่าวจึงได้พัฒนาระบบบริหารจัดการด้วยข้อมูลสารสนเทศภูมิศาสตร์ผ่านแบบจำลองความสัมพันธ์การเปลี่ยนแปลงความร้อน
+                                    (อุณหภูมิ)
+                                    กับสัดส่วนพื้นที่สีเขียวเพื่อเป็นเครื่องมือที่สำคัญในการดูแลรักษาและพัฒนาพื้นที่สีเขียวและพื้นที่โล่งอย่างยั่งยืน
+                                </p>
+
+
+
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-
-
-
     </main>
 
 
-    <footer class="footer text-center">
-
+    <footer class="footer  text-center">
         <div class="container">
-
-            <!-- <div class="socials-media">
-
-                <ul class="list-unstyled">
-                    <li class="d-inline-block ml-1 mr-1"><a href="#" class="text-dark"><i
-                                class="fa fa-facebook"></i></a></li>
-                    <li class="d-inline-block ml-1 mr-1"><a href="#" class="text-dark"><i class="fa fa-twitter"></i></a>
-                    </li>
-                    <li class="d-inline-block ml-1 mr-1"><a href="#" class="text-dark"><i
-                                class="fa fa-instagram"></i></a></li>
-                    <li class="d-inline-block ml-1 mr-1"><a href="#" class="text-dark"><i
-                                class="fa fa-google-plus"></i></a></li>
-                    <li class="d-inline-block ml-1 mr-1"><a href="#" class="text-dark"><i class="fa fa-behance"></i></a>
-                    </li>
-                    <li class="d-inline-block ml-1 mr-1"><a href="#" class="text-dark"><i
-                                class="fa fa-dribbble"></i></a></li>
-                </ul>
-
-            </div> -->
-
-            <!--
-              All the links in the footer should remain intact.
-              You may remove the links only if you donate:
-              https://www.wowthemes.net/freebies-license/
-            -->
             <p>© <span class="credits font-weight-bold">
-                    <a target="_blank" class="text-dark" href="#">Dev by EnGRID</a>
+                    <a target="_blank" class="text-dark" href="#">Dev by EnGRIDs</a>
                 </span>
             </p>
-
-
         </div>
 
     </footer>
 
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="/__/firebase/7.16.1/firebase-app.js"></script>
-
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-    <script src="/__/firebase/7.16.1/firebase-analytics.js"></script>
-
-    <!-- Initialize Firebase -->
-    <script src="/__/firebase/init.js"></script>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="assets/js/app.js"></script>
     <script src="assets/js/theme.js"></script>
-    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
-        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
-        crossorigin=""></script>
-    <!-- <script src="https://unpkg.com/leaflet.pm@latest/dist/leaflet.pm.min.js"></script> -->
-    <script src="https://unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.min.js"></script>
-    <script src='https://unpkg.com/@turf/turf/turf.min.js'></script>
-    <script src='leaflet-openweathermap.js'></script>
-    <script src="./app.js"></script>
+
+    <!-- <script src="./marker.js"></script> -->
+    <script src="./about.js"></script>
 </body>
 
 </html>

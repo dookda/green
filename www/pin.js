@@ -75,65 +75,60 @@ function loadMap() {
     lyr: 'basemap'
   });
 
-  const pro = L.tileLayer.wms(geoserv, {
-    layers: 'th:province_4326',
+  const pk_poi = L.tileLayer.wms(geoserv, {
+    layers: 'th:pk_poi',
     format: 'image/png',
     transparent: true,
-    attribution: "#grid"
+    maxZoom: 20,
+    opacity: 0.8
   });
 
-  const parcel = L.tileLayer.wms(geoserv, {
-    layers: 'green:parcel',
+  const pk_streams = L.tileLayer.wms(geoserv, {
+    layers: 'th:pk_streams',
     format: 'image/png',
     transparent: true,
-    maxZoom: 20
+    maxZoom: 22,
+    opacity: 0.8
   });
 
-  const pk_bu_4326 = L.tileLayer.wms(geoserv, {
-    layers: 'green:pk_bu_4326',
+  const pk_trans = L.tileLayer.wms(geoserv, {
+    layers: 'th:pk_trans',
     format: 'image/png',
     transparent: true,
-    maxZoom: 20
+    maxZoom: 22,
+    opacity: 0.8
   });
 
-<<<<<<< HEAD
-  const pk_green_4326 = L.tileLayer.wms("http://119.59.125.134:8080/geoserver/wms?", {
-    layers: 'green:pk_green_13aug20_32647',
-=======
-  const pk_green_4326 = L.tileLayer.wms(geoserv, {
-    layers: 'green:pk_green_4326',
->>>>>>> aba3370a468eaca4aaf8e4cbfe1a3f02deda8e92
+  const pk_building = L.tileLayer.wms(geoserv, {
+    layers: 'th:pk_building',
     format: 'image/png',
     transparent: true,
-    maxZoom: 20
+    maxZoom: 22,
+    opacity: 0.8
   });
 
-  const pk_os_4326 = L.tileLayer.wms(geoserv, {
-    layers: 'green:pk_os_4326',
+  const pk_green_31aug20 = L.tileLayer.wms(geoserv, {
+    layers: 'th:pk_green_31aug20',
     format: 'image/png',
     transparent: true,
-    maxZoom: 20
+    maxZoom: 22,
+    opacity: 0.8
   });
 
-  const pk_streams_4326 = L.tileLayer.wms(geoserv, {
-    layers: 'green:pk_streams_4326',
+  const pk_soil = L.tileLayer.wms(geoserv, {
+    layers: 'th:pk_soil',
     format: 'image/png',
     transparent: true,
-    maxZoom: 20
+    maxZoom: 22,
+    opacity: 0.8
   });
 
-  const pk_trans_4326 = L.tileLayer.wms(geoserv, {
-    layers: 'green:pk_trans_4326',
+  const pk_landpacel = L.tileLayer.wms(geoserv, {
+    layers: 'th:pk_landpacel',
     format: 'image/png',
     transparent: true,
-    maxZoom: 20
-  });
-
-  const pk_vill = L.tileLayer.wms(geoserv, {
-    layers: 'green:pk_vill',
-    format: 'image/png',
-    transparent: true,
-    maxZoom: 20
+    maxZoom: 22,
+    opacity: 0.8
   });
 
   const baseMap = {
@@ -143,13 +138,11 @@ function loadMap() {
   }
 
   const overlayMap = {
-    "สิ่งปลูกสร้าง": pk_bu_4326,
-    "พื้นที่สีเขียว": pk_green_4326.addTo(map),
-    "พื้นที่เปิดโล่ง": pk_os_4326,
-    "แม่น้ำ": pk_streams_4326,
-    "ถนน": pk_trans_4326,
-    "แปลงที่ดิน": parcel.addTo(map),
-    "ชุมชน": pk_vill
+    "สิ่งปลูกสร้าง": pk_building,
+    "พื้นที่สีเขียว": pk_green_31aug20.addTo(map),
+    "แม่น้ำ": pk_streams,
+    "ถนน": pk_trans,
+    "แปลงที่ดิน": pk_landpacel.addTo(map)
   }
 
   L.control.layers(baseMap, overlayMap).addTo(map);

@@ -32,34 +32,38 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarsDefault">
             <ul class="navbar-nav mr-auto align-items-center">
-                <form class="bd-search hidden-sm-down">
-                    <input type="text" class="form-control bg-graylight border-0 font-weight-bold" id="search-input"
-                        placeholder="Search..." autocomplete="off">
-                    <div class="dropdown-menu bd-search-results" id="search-results">
-                    </div>
-                </form>
+
             </ul>
             <ul class="navbar-nav ml-auto align-items-center">
+
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html">หน้าหลัก</a>
+                    <a class="nav-link" href="index.html">เกี่ยวกับโครงการ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="tempcal.html">พื้นที่สีเขียว</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="pin.html">เก็บข้อมูล</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="dashboard.html">dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">เกี่ยวกับโครงการ</a>
+                    <a class="nav-link active" href="dashboard.html">สถิติ</a>
                 </li>
 
             </ul>
         </div>
     </nav>
+
     <main role="main">
-        <section class="mt-2 mb-2">
-            <div class="col-sm-12 mb-1">
-                <div class="card round shadow-sm" id="map"></div>
+        <section class="mt-4 mb-5">
+            <div class="container-fluid">
+                <!-- <div class="row"> -->
+                <div class="col-sm-12 mb-1">
+                    <div id="greenByCom"></div>
+                </div>
+                <div class="col-sm-12 mb-1">
+                    <div id="greenCom"></div>
+                </div>
+                <!-- </div> -->
             </div>
         </section>
     </main>
@@ -68,7 +72,7 @@
     <footer class="footer  text-center">
         <div class="container">
             <p>© <span class="credits font-weight-bold">
-                    <a target="_blank" class="text-dark" href="#">Dev by GRID</a>
+                    <a target="_blank" class="text-dark" href="#">Dev by EnGRIDs</a>
                 </span>
             </p>
         </div>
@@ -87,6 +91,11 @@
     <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.js"
         charset="utf-8"></script>
     <script src='leaflet-openweathermap.js'></script>
+
+
+    <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
 
     <script src="./marker.js"></script>
     <script src="./dashboard.js"></script>

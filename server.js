@@ -16,8 +16,8 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-app.listen(3000, () => {
-    console.log('http://localhost:3000')
+app.listen(3400, () => {
+    console.log('http://localhost:3400')
 });
 app.use(express.static(__dirname + '/www'));
 
